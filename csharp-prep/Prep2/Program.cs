@@ -35,6 +35,15 @@ class Program
             letter = "error";
         }
 
-        Console.Write($"Your grade is: {letter}");
+        Console.WriteLine($"Your grade: {letter}");
+
+        if (intGrade >= 70)
+        {
+            Console.WriteLine("Congratulations! You passed!");
+        }
+        else
+        {
+            Console.WriteLine("Sorry, but you need at least 70% to pass. Better luck next time.");
+        }
     }
 }
