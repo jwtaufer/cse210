@@ -10,7 +10,7 @@ class Program
         job1._startYear = 2011;
         job1._endYear = 2016;
 
-        Console.WriteLine(job1._company);
+        job1.DisplayJobDetails();
 
         Job job2 = new Job();
         job2._company = "Apple";
@@ -18,6 +18,13 @@ class Program
         job2._startYear = 2016;
         job2._endYear = 2017;
 
-        Console.WriteLine(job2._company);
+        job2.DisplayJobDetails();
+
+        Resume resume1 = new Resume();
+        resume1._person = "Benjamin Carter";
+        resume1._jobs.Add(job1);
+        resume1._jobs.Add(job2);
+
+        Console.WriteLine(resume1._jobs[0]._jobTitle);
     }
 }
