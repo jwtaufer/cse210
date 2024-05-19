@@ -7,7 +7,7 @@ class Journal {
     public string _myFile;
     public List<List<string>> _entries = new List<List<string>>();
 
-    public void Load() {
+    public List<List<string>> Load() {
         Console.Write("Put file in the same folder as 'Program.cs' then press 'Enter'.");
         Console.ReadLine();
         Console.Write("Enter the filename: ");
@@ -29,17 +29,20 @@ class Journal {
             _entries.Add(entry);
         }
 
-        foreach (List<string> entry in _entries)
-        {
-            Console.WriteLine();
-            Console.WriteLine($"Date: {entry[0]}");
-            Console.WriteLine($"Prompt: {entry[1]}");
-            Console.WriteLine($"Entry: {entry[2]}");
-        };
-        Console.WriteLine();
+        return _entries;
     }
 
-    public void Save() {
-        
+    public void Save(List<List<string>> _entries)
+    {
+        Console.Write("Enter the filename: ");
+        _myFile = Console.ReadLine();
+
+        using (StreamWriter outputFile = new StreamWriter(_myFile))
+        {
+            foreach (List<string> entry in _entries)
+            {
+                outputFile.WriteLine($"{entry[0]}|{entry[1]}|{entry[2]}");
+            }    
+        }
     }
 }

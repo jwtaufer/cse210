@@ -1,18 +1,39 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 class Entry {
     private DateTime todaysDate;
+    private string _getDay;
     private string _today;
-    public string _entry;
-    public string _prompt;
+    private string _prompt;
+    private string _entry;
+    private List<string> _entryList;
+    private PromptGenerator _promptClass = new PromptGenerator();
 
-     public Entry() {
-        DateTime todaysDate = DateTime.Now;
-        _today = todaysDate.ToString("yyyy/MM/dd hh:mm tt");
+    private string GetDate()
+    {
+        todaysDate = DateTime.Now;
+        _getDay = todaysDate.ToString("yyyy/MM/dd hh:mm tt");
+
+        return _getDay;  
     }
 
-    public void DisplayEntry() {
+    public List<string> CreateEntry()
+    {
+        _today = GetDate();
+        _prompt = _promptClass.GeneratePrompt();
+        
         Console.WriteLine(_today);
         Console.WriteLine(_prompt);
-        Console.WriteLine($"{_entry}");
+        _entry = Console.ReadLine();
+
+        _entryList = new List<string>()
+        {
+                _today,
+                _prompt,
+                _entry
+        };
+
+        return _entryList;
+
     }
 }

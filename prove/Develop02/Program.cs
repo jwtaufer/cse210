@@ -5,9 +5,11 @@ class Program
     static void Main(string[] args)
     {
         string userInput = "n";
-        int userNumber = 0;
+        List<string> journalEntry;
+        List<List<string>> journalFile = new List<List<string>>();
 
-        Console.WriteLine("Welcome to Journal!");
+        Console.WriteLine();
+        Console.WriteLine("Welcome to Journalific!");
 
         while (userInput.ToLower() != "y")
         {
@@ -19,38 +21,50 @@ class Program
             Console.WriteLine("5. Quit");
 
             userInput = Console.ReadLine();
-            userNumber = int.Parse(userInput);
+            Console.WriteLine();
 
-            if (userNumber == 1) //Write
+            switch(userInput)
             {
+                case "1": //Write
+                    Entry writeJournal = new Entry();
+                    journalEntry = writeJournal.CreateEntry();
+                    journalFile.Add(journalEntry);
+                    break;
 
-            }
-            else if (userNumber == 2) //Display
-            {
+                case "2": //Display
+                    foreach (List<string> entry in journalFile)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine($"Date: {entry[0]}");
+                        Console.WriteLine($"Prompt: {entry[1]}");
+                        Console.WriteLine($"Entry: {entry[2]}");
+                    }    
+                    break;
 
-            }
-            else if (userNumber == 3) //Load
-            {
-                Journal journal = new Journal();
-                journal.Load();
-            }
-            else if (userNumber == 4) //Save
-            {
+                case "3": //Load
+                    Journal journalClass = new Journal();
+                    journalFile = journalClass.Load();
+                    Console.WriteLine("File loaded.");
+                    break;
 
-            }
-            else if (userNumber == 5) //Quit
-            {
-                Console.WriteLine("Don't forget to save!");
-                Console.Write("Are you sure you want to exit (Y/N)? ");
-                userInput = Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine($"Sorry, {userInput} is not a valid entry.");
-                Console.WriteLine("Please enter: 1, 2, 3, 4, or 5");
-            }
+                case "4": //Save
+                    Journal save = new Journal();
+                    save.Save(journalFile);
+                    break;
 
-           userNumber = 0;
+                case "5": //Quit
+                    Console.WriteLine("Don't forget to save!");
+                    Console.Write("Are you sure you want to exit (Y/N)? ");
+                    userInput = Console.ReadLine();
+                    break;
+                
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine($"Sorry, '{userInput}' is not a valid entry.");
+                    Console.WriteLine("Please enter: 1, 2, 3, 4, or 5");
+                    break;
+            }    
+            Console.WriteLine();
         }     
     }
 }
