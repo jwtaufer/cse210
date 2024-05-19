@@ -11,7 +11,9 @@ public class PromptGenerator{
             "What was the best part of your day?",
             "How did you see the hand of the Lord in your life today?",
             "What was the strongest emotion you felt today?",
-            "If you had one thing you could do over today, what would it be?"
+            "If you had one thing you could do over today, what would it be?",
+            "What is something good someone did for you today?",
+            "What is something good you did for someone else today?"
         };
 
         int index = rnd.Next(prompts.Count);
