@@ -1,9 +1,11 @@
 using System;
+using System.Xml.Linq;
 
 class Program
 {
     static void Main(string[] args)
     {
+        bool exit = false;
         string userInput = "n";
         List<string> journalEntry;
         List<List<string>> journalFile = new List<List<string>>();
@@ -13,12 +15,41 @@ class Program
 
         while (userInput.ToLower() != "y")
         {
-            Console.WriteLine("Please select one of the following:");
+            while (!exit)
+            {
+                Console.WriteLine("Select one of the following:");
+                Console.WriteLine("1. New File");
+                Console.WriteLine("2. Load File");
+
+                userInput = Console.ReadLine();
+
+                switch(userInput)
+                {
+                    case "1":
+                        exit = true;
+                        break;
+
+                    case "2":
+                        Journal journalClass = new Journal();
+                        journalFile = journalClass.Load();
+                        Console.WriteLine("File loaded.");
+                        exit = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine($"Sorry, '{userInput}' is not a valid entry.");
+                        Console.WriteLine("Please enter: 1 or 2.");
+                        break;
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Select one of the following:");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("3. Save");
+            Console.WriteLine("4. Quit");
 
             userInput = Console.ReadLine();
             Console.WriteLine();
@@ -41,18 +72,12 @@ class Program
                     }    
                     break;
 
-                case "3": //Load
-                    Journal journalClass = new Journal();
-                    journalFile = journalClass.Load();
-                    Console.WriteLine("File loaded.");
-                    break;
-
-                case "4": //Save
+                case "3": //Save
                     Journal save = new Journal();
                     save.Save(journalFile);
                     break;
 
-                case "5": //Quit
+                case "4": //Quit
                     Console.WriteLine("Don't forget to save!");
                     Console.Write("Are you sure you want to exit (Y/N)? ");
                     userInput = Console.ReadLine();
