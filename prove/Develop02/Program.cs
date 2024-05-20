@@ -25,11 +25,11 @@ class Program
 
                 switch(userInput)
                 {
-                    case "1":
+                    case "1": //New File
                         exit = true;
                         break;
 
-                    case "2":
+                    case "2": //Load File
                         Journal journalClass = new Journal();
                         journalFile = journalClass.Load();
                         Console.WriteLine("File loaded.");
