@@ -86,7 +86,7 @@ class Program
                 default:
                     Console.WriteLine();
                     Console.WriteLine($"Sorry, '{userInput}' is not a valid entry.");
-                    Console.WriteLine("Please enter: 1, 2, 3, 4, or 5");
+                    Console.WriteLine("Please enter: 1, 2, 3 or 4.");
                     break;
             }    
             Console.WriteLine();
