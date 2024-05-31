@@ -29,4 +29,9 @@ class Scriptures
     {
         return _alma713;
     }
+
+    public string Alma7111213()
+    {
+        return _alma711 + _alma712 + _alma713;
+    }
 }

@@ -3,22 +3,26 @@ using System;
 class Memorize
 {
     private bool _memorize;
-    private References _alma711r = new References();
+    private References _alma711r;
     private string _reference;
-    private Scriptures _alma711s = new Scriptures();
+    private Scriptures _alma711s;
     private string _scripture;
     private string _userInput;
     public Memorize()
     {
         _memorize = true;
-        _reference =_alma711r.Alma711();
+        _alma711r = new References("Alma 7:11");
         _alma711s = new Scriptures();
+        _reference = _alma711r.Alma711();
+        _scripture = _alma711s.Alma711();
     }
     public void Alma711()
     {
         while (_memorize)
         {
-            Console.WriteLine(_alma711r.Alma711());
+            Console.Clear();
+            Console.WriteLine(_reference);
+            Console.WriteLine(_scripture);
             Console.WriteLine("Tap 'Enter' to continue memorizing,");
             Console.WriteLine("or type 'quit' to exit.");
 
@@ -28,8 +32,6 @@ class Memorize
 
             switch (_userInput.ToLower())
             {
-                case "":
-                    break;
                 case "quit":
                     _memorize = false;
                     break;
@@ -37,8 +39,6 @@ class Memorize
                     _memorize = false;
                     break;
                 default:
-                    Console.WriteLine();
-                    Console.WriteLine("Invalid input. Press 'Enter' or type 'quit'.");
                     break;
             }
         }
